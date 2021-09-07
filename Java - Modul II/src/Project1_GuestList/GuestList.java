@@ -18,20 +18,21 @@ public class GuestList {
 	
 	// getting data from user with a Scanner
 	Scanner sc = new Scanner(System.in);
-	//
+	
+	
 	//adding Guests to GuestList
 	public int add () {
 		
 		// get data from User
 		System.out.println("Se adauga o noua persoana…");
 		System.out.println("Introduceti numele de familie: ");
-		String numeFamilie = sc.nextLine();
+		String numeFamilie = sc.next();
 		System.out.println("Introduceti prenumele: ");
-		String prenume =  sc.nextLine();
+		String prenume =  sc.next();
 		System.out.println("Introduceti email: ");
-		String email = sc.nextLine();
+		String email = sc.next();
 		System.out.println("Introduceti numar de telefon: ");
-		String numarTelefon = sc.nextLine();
+		String numarTelefon = sc.next();
 
 		
 		//Creating object Guest
@@ -56,7 +57,7 @@ public class GuestList {
 		//verify if adding a Guest to theList can be possibile if adding is less then the limitOfList
 		if (theList.size() < limitOfList) {
 			theList.add(g);
-			System.out.println("Felicitari! Locul tau la eveniment este confirmat. Te asteptam!.");
+			System.out.println("Felicitari " + g.getFirstName() + " " + g.getLastName() + "! Locul tau la eveniment este confirmat. Te asteptam!.");
 			return 0;
 		}
 		
@@ -123,12 +124,11 @@ public class GuestList {
 			System.out.println("Introduceti numele de familie: ");
 			String secondName = sc.next();
 			System.out.println("Introduceti prenumele: ");
-			sc.nextLine();
-			String firstName = sc.nextLine();
+			String firstName = sc.next();
 			
 			//searching Guest by name in theList
 			for (Guest i : theList) {
-				if ((i.getFirstName().compareTo(firstName) == 0) && (i.getLastName().compareTo(secondName) == 0)) {
+				if ((i.getFirstName().toLowerCase().compareTo(firstName.toLowerCase()) == 0) && (i.getLastName().toLowerCase().compareTo(secondName.toLowerCase()) == 0)) {
 					System.out.println("Persoana " + firstName + " " + secondName + " se afla pe lista de invitati");
 					return true;
 				}
@@ -136,7 +136,7 @@ public class GuestList {
 			
 			//searching Guest by name in waitingList
 			for (Guest i : waitingList) {
-				if ((i.getFirstName().compareTo(firstName) == 0) && (i.getLastName().compareTo(secondName) == 0)) {
+				if ((i.getFirstName().toLowerCase().compareTo(firstName.toLowerCase()) == 0) && (i.getLastName().toLowerCase().compareTo(secondName.toLowerCase()) == 0)) {
 					System.out.println("Persoana " + firstName + " " + secondName + " este pe lista de asteptare!");
 					return true;
 				}
@@ -148,22 +148,21 @@ public class GuestList {
 			
 			//get user data for case 2
 			System.out.println("Introduceti numele de email-ul: ");
-			sc.nextLine();
-			String mail = sc.nextLine();
+			String mail = sc.next();
 			System.out.println();
 			
 			//finding out if the email it's on the main list
 			for (Guest i : theList) {
-				if (i.getEmail().compareTo(mail) == 0) {
-					System.out.println("Persoana cu email-ul: " + mail + "se afla pe lista de invitati");
+				if (i.getEmail().toLowerCase().compareTo(mail.toLowerCase()) == 0) {
+					System.out.println("Persoana cu email-ul: " + mail + " se afla pe lista de invitati");
 					return true;
 				}
 			}
 			
 			//finding out if the email it's on the waiting list
 			for (Guest i : waitingList) {
-				if (i.getEmail().compareTo(mail) == 0) {
-					System.out.println("Persoana cu email-ul: " + mail + "este pe lista de asteptare");
+				if (i.getEmail().toLowerCase().compareTo(mail.toLowerCase()) == 0) {
+					System.out.println("Persoana cu email-ul: " + mail + " este pe lista de asteptare");
 					return true;
 				}
 			}
@@ -173,13 +172,12 @@ public class GuestList {
 		if (n == 3) {
 			//get data user
 			System.out.println("Introduceti numarul de telefon: ");
-			sc.nextLine();
-			String num = sc.nextLine();
+			String num = sc.next();
 			sc.close();
 			
 			//search in main list with phone number
 			for (Guest i : theList) {
-				if (i.getPhoneNumber().compareTo(num) == 0) {
+				if (i.getPhoneNumber().toLowerCase().compareTo(num.toLowerCase()) == 0) {
 					System.out.println("Persoana cu numarul de telefon: " + num + " se afla pe lista de invitati");
 					return true;
 				}
@@ -187,7 +185,7 @@ public class GuestList {
 			
 			//search in waiting list with phone number
 			for(Guest i : waitingList) {
-				if(i.getPhoneNumber().compareTo(num) == 0) {
+				if(i.getPhoneNumber().toLowerCase().compareTo(num.toLowerCase()) == 0) {
 					System.out.println("Persoana cu numarul de telefon: " + num + " se afla pe lista de asteptare");
 					return true;
 				}
@@ -223,13 +221,12 @@ public class GuestList {
 			System.out.println("Introduceti numele de familie: ");
 			String secondName = sc.next();
 			System.out.println("Introduceti prenumele: ");
-			sc.nextLine();
-			String firstName = sc.nextLine();
+			String firstName = sc.next();
 			
 			//remove Guest by name in theList
 			boolean guestOnMainList = false;
 			for (Guest i : theList) {
-				if ((i.getFirstName().compareTo(firstName) == 0) && (i.getLastName().compareTo(secondName) == 0)) {
+				if ((i.getFirstName().toLowerCase().compareTo(firstName.toLowerCase()) == 0) && (i.getLastName().toLowerCase().compareTo(secondName.toLowerCase()) == 0)) {
 					theList.remove(i);
 					System.out.println("Stergerea persoanei s-a realizat cu succes.");
 					boolean result =  waitingList.isEmpty();
@@ -246,7 +243,7 @@ public class GuestList {
 			//remove Guest by name in waitingList
 			if (guestOnMainList == false) {
 				for (Guest i : waitingList) {
-					if ((i.getFirstName().compareTo(firstName) == 0) && (i.getLastName().compareTo(secondName) == 0)) {
+					if ((i.getFirstName().toLowerCase().compareTo(firstName.toLowerCase()) == 0) && (i.getLastName().toLowerCase().compareTo(secondName.toLowerCase()) == 0)) {
 						waitingList.remove(i);
 						System.out.println("Stergerea persoanei s-a realizat cu succes.");
 						return true;
@@ -260,14 +257,13 @@ public class GuestList {
 			
 			//get user data for case 2
 			System.out.println("Introduceti numele de email-ul: ");
-			sc.nextLine();
-			String mail = sc.nextLine();
+			String mail = sc.next();
 			System.out.println();
 			
 			//remove Guest by email in theList & add person from waitingList to theList
 			boolean guestOnMainList = false;
 			for (Guest i : theList) {
-				if (i.getEmail().compareTo(mail) == 0) {
+				if (i.getEmail().toLowerCase().compareTo(mail.toLowerCase()) == 0) {
 					theList.remove(i);
 					System.out.println("Stergerea persoanei s-a realizat cu succes.");
 					boolean result =  waitingList.isEmpty();
@@ -286,7 +282,7 @@ public class GuestList {
 			//remove Guest by email in waitingList
 			if (guestOnMainList == false) {
 				for (Guest i : waitingList) {
-					if (i.getEmail().compareTo(mail) == 0) {
+					if (i.getEmail().toLowerCase().compareTo(mail.toLowerCase()) == 0) {
 						waitingList.remove(i);
 						System.out.println("Stergerea persoanei s-a realizat cu succes.");
 						return true;
@@ -300,14 +296,13 @@ public class GuestList {
 			
 			//get user data for case 3
 			System.out.println("Introduceti numele de numarul de telefon: ");
-			sc.nextLine();
-			String num = sc.nextLine();
+			String num = sc.next();
 			System.out.println();
 			
 			//remove Guest by phoneNumber in theList & add person from waitingList to theList
 			boolean guestOnMainList = false;
 			for (Guest i : theList) {
-				if (i.getPhoneNumber().compareTo(num) == 0) {
+				if (i.getPhoneNumber().toLowerCase().compareTo(num.toLowerCase()) == 0) {
 					theList.remove(i);
 					System.out.println("Stergerea persoanei s-a realizat cu succes.");
 					boolean result =  waitingList.isEmpty();
@@ -326,7 +321,7 @@ public class GuestList {
 			//remove Guest by phoneNumber in waitingList
 			if (guestOnMainList == false) {
 				for (Guest i : waitingList) {
-					if (i.getPhoneNumber().compareTo(num) == 0) {
+					if (i.getPhoneNumber().toLowerCase().compareTo(num.toLowerCase()) == 0) {
 						waitingList.remove(i);
 						System.out.println("Stergerea persoanei s-a realizat cu succes.");
 						return true;
@@ -347,7 +342,7 @@ public class GuestList {
 			return -1;
 		}
 		for (Guest i : theList) {
-			if ((i.getFirstName().compareTo(firstName) == 0) && (i.getLastName().compareTo(secondName) == 0)) {
+			if ((i.getFirstName().toLowerCase().compareTo(firstName.toLowerCase()) == 0) && (i.getLastName().toLowerCase().compareTo(secondName.toLowerCase()) == 0)) {
 				return theList.indexOf(i);
 			}
 		}
@@ -359,13 +354,13 @@ public class GuestList {
 
 		if (n == 2) {
 			for (Guest i : theList) {
-				if ((i.getEmail().compareTo(emailPhoneNumber)) == 0) {
+				if ((i.getEmail().toLowerCase().compareTo(emailPhoneNumber.toLowerCase())) == 0) {
 					return theList.indexOf(i);
 				}
 			}
 		} else {
 			for (Guest i : theList) {
-				if ((i.getPhoneNumber().compareTo(emailPhoneNumber)) == 0) {
+				if ((i.getPhoneNumber().toLowerCase().compareTo(emailPhoneNumber.toLowerCase())) == 0) {
 					return theList.indexOf(i);
 				}
 			}
@@ -396,10 +391,9 @@ public class GuestList {
 		//case 1: for firstName and lastName
 		if (dataUser == 1) {
 			System.out.println("Introduceti numele: ");
-			sc.nextLine();
-			lastName = sc.nextLine();
+			lastName = sc.next();
 			System.out.println("Introduceti prenumele: ");
-			firstName = sc.nextLine();
+			firstName = sc.next();
 			int i = checkTheList(dataUser,firstName,lastName);
 			if (i != -1) {
 				System.out.println("Alege campul de actualizat, tastand:\r\n"
@@ -411,29 +405,25 @@ public class GuestList {
 				
 				if (modify == 1) {
 					System.out.println("Scrieti numele: \n");
-					sc.nextLine();
-					lastName = sc.nextLine();
+					lastName = sc.next();
 					theList.get(i).setLastName(lastName);
 					System.out.println("Nume schimbat cu succes!");
 				
 				} else if (modify == 2) {
 					System.out.println("Scrieti prenumele: \n");
-					sc.nextLine();
-					firstName = sc.nextLine();
+					firstName = sc.next();
 					theList.get(i).setFirstName(firstName);
 					System.out.println("Prenume schimbat cu succes!");
 					
 				} else if (modify == 3) {
 					System.out.println("Scrieti email-ul: \n");
-					sc.nextLine();
-					email = sc.nextLine();
+					email = sc.next();
 					theList.get(i).setEmail(email);
 					System.out.println("Email schimbat cu succes! ");
 					
 				} else if (modify == 4) {
 					System.out.println("Scrieti numarul de telefon: \n");
-					sc.nextLine();
-					phoneNumber = sc.nextLine();
+					phoneNumber = sc.next();
 					theList.get(i).setPhoneNumber(phoneNumber);
 					System.out.println("Numarul de telefon schimbat cu succes! ");
 				} else {
@@ -446,10 +436,9 @@ public class GuestList {
 		//case 2 for email
 		} else if (dataUser == 2) {
 			System.out.println("Introduceti email-ul: ");
-			sc.nextLine();
-			email = sc.nextLine();
+			email = sc.next();
 			int i = checkTheListEmailOrNumber(dataUser, email);
-			System.out.println("i-ul este: " + i);
+
 			if (i != -1) {
 				System.out.println("Alege campul de actualizat, tastand:\r\n"
 						+ "\"1\" - Nume\r\n"
@@ -460,30 +449,26 @@ public class GuestList {
 				
 				if (modify == 1) {
 					System.out.println("Scrieti numele: \n");
-					sc.nextLine();
-					lastName = sc.nextLine();
+					lastName = sc.next();
 					theList.get(i).setLastName(lastName);
 					System.out.println("Numele schimbat cu succes!");
 
 					
 				} else if (modify == 2) {
 					System.out.println("Scrieti prenumele: \n");
-					sc.nextLine();
-					firstName = sc.nextLine();
+					firstName = sc.next();
 					theList.get(i).setFirstName(firstName);
 					System.out.println("Prenumele schimbat cu succes!");
 					
 				} else if (modify == 3) {
 					System.out.println("Scrieti email-ul: \n");
-					sc.nextLine();
-					email = sc.nextLine();
+					email = sc.next();
 					theList.get(i).setEmail(email);
 					System.out.println("Email schimbat cu succes! ");
 					
 				} else if (modify == 4) {
 					System.out.println("Scrieti numarul de telefon: \n");
-					sc.nextLine();
-					phoneNumber = sc.nextLine();
+					phoneNumber = sc.next();
 					theList.get(i).setPhoneNumber(phoneNumber);
 					System.out.println("Numarul de telefon schimbat cu succes!");
 				} else {
@@ -496,8 +481,7 @@ public class GuestList {
 		//case 3 for phone Number
 		} else if(dataUser == 3) {
 			System.out.println("Introduceti numarul de telefon: ");
-			sc.nextLine();
-			phoneNumber = sc.nextLine();
+			phoneNumber = sc.next();
 			int i = checkTheListEmailOrNumber (dataUser, phoneNumber);
 			if (i != -1) {
 				System.out.println("Alege campul de actualizat, tastand:\r\n"
@@ -509,29 +493,25 @@ public class GuestList {
 				
 				if (modify == 1) {
 					System.out.println("Scrieti numele: \n");
-					sc.nextLine();
-					lastName = sc.nextLine();
+					lastName = sc.next();
 					theList.get(i).setLastName(lastName);
 					System.out.println("Numele schimbat cu succes!");
 					
 				} else if (modify == 2) {
 					System.out.println("Scrieti prenumele: \n");
-					sc.nextLine();
-					firstName = sc.nextLine();
+					firstName = sc.next();
 					theList.get(i).setFirstName(firstName);
 					System.out.println("Prenumele schimbat cu succes!");
 					
 				} else if (modify == 3) {
 					System.out.println("Scrieti email-ul: \n");
-					sc.nextLine();
-					email = sc.nextLine();
+					email = sc.next();
 					theList.get(i).setEmail(email);
 					System.out.println("Email schimbat cu succes!");
 					
 				} else if (modify == 4) {
 					System.out.println("Scrieti numarul de telefon: \n");
-					sc.nextLine();
-					phoneNumber = sc.nextLine();
+					phoneNumber = sc.next();
 					theList.get(i).setPhoneNumber(phoneNumber);
 					System.out.println("Numarul de telefon schimbat cu succes! ");
 				} else {
@@ -593,7 +573,7 @@ public class GuestList {
 	//partial and case insensitive search
 	public void search() {
 		System.out.println("Introduceti sirul de caractere pentru cautarea partiala: ");
-		String partialWord = sc.nextLine();
+		String partialWord = sc.next();
 		ArrayList <Guest> fieldsContainsPartialWord = new ArrayList<>();
 		int guestNo = 1;
 		

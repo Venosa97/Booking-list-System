@@ -56,7 +56,8 @@ public class Main {
 			if (value == 13) {
 				System.out.println("La revedere!");
 				break;
-			} else {
+			}
+			if (value > 13 || value < 1) {
 				System.out.println("Nu ati introdus o comanda valida!");
 			}
 		}
