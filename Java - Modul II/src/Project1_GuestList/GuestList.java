@@ -18,7 +18,7 @@ public class GuestList {
 	
 	// getting data from user with a Scanner
 	Scanner sc = new Scanner(System.in);
-	
+	//
 	//adding Guests to GuestList
 	public int add () {
 		
